@@ -1,0 +1,31 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+bool readInt(int &x){
+
+    if (!cin || !(isdigit(cin.peek()) || cin.peek() == '\n')) {
+        cin.clear();
+        cin.ignore(9999, '\n');
+        return false;
+    }
+    else{
+        cin.clear();
+        cin.ignore(9999, '\n');
+        return true;
+    }
+}
+
+int main() {
+    int x;
+    cout<<"Enter an integer: "<<endl;
+    cin>>x;
+    if(readInt(x)){
+        cout<<"Valid input! :D"<<endl;
+    }
+    else{
+        cout<<"Invalid input T^T"<<endl;
+    }
+
+}

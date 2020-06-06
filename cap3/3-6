@@ -1,0 +1,19 @@
+#include <iostream>
+#include <cmath>
+#include <ctime>
+#include <chrono>  // used to test
+#include <thread>
+
+using namespace std;
+
+time_t timeElapsed(){
+    static time_t first_call = time(0);
+    time_t current = time(0);
+    return current-first_call;
+}
+
+int main() {
+    cout << timeElapsed() << endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // wait for 1000 ms
+    cout << timeElapsed() << endl;
+}

@@ -1,0 +1,31 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+double distance(double x1, double y1, double x2, double y2){
+    return sqrt(pow((x1-x2),2)+pow((y1-y2),2));
+
+}
+double area(double x1, double y1, double x2, double y2, double x3, double y3){
+    double l1 = distance(x1,y1,x2,y2);
+    double l2 = distance(x1,y1,x3,y3);
+    double l3 = distance(x2,y2,x3,y3);
+    double s = (l1+l2+l3)/2;
+    return sqrt(s*(s-l1)*(s-l2)*(s-l3));
+}
+
+
+int main() {
+    //3.1
+    double x1, y1, x2, y2, x3, y3;
+    cout<<"Enter the first vertice: ";
+    cin>>x1>>y1;
+    cout<<"\nEnter the second vertice: ";
+    cin>>x2>>y2;
+    cout<<"\nEnter the third vertice: ";
+    cin>>x3>>y3;
+    double a = area(x1,y1,x2,y2,x3,y3);
+    cout<<a;
+
+}
