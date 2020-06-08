@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void bubbleSort(vector<int> &v){
+    int toCheck = v.size();
+    while(toCheck > 0) {
+        for (int i = 1; i < toCheck; i ++) {
+            if (v.at(i - 1) > v.at(i)) {
+                int temp = v.at(i);
+                v.at(i) = v.at(i - 1);
+                v.at(i - 1) = temp;
+            }
+        }
+        toCheck --;
+    }
+}
+
+int binarySearch(const vector<int> &v, int value){
+    int first = 0;
+    int last = (int) v.size()-1;
+    do{
+        int middle = (first+last)/2;
+        if(v.at(middle)==value){
+            return middle;
+        }
+        else if(value<v.at(middle)){
+            last=middle-1;
+        }
+        else {
+            first = middle+1;
+        }
+    }while(first<=last);
+    return -1;
+}
+
+int main() {
+    vector<int> v = {10, 13, 4, 6, 22, 345, 17, 35};
+    bubbleSort(v);
+    for(int i =0; i<v.size(); i++){
+        cout<<v.at(i)<<endl;
+    }
+    cout<<"The value is at index: "<<binarySearch(v, 17)<<endl;
+
+}

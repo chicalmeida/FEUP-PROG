@@ -1,0 +1,22 @@
+#include <iostream>
+
+using namespace std;
+
+void readArray(int a[], size_t nElem){
+    for(int i = 0; i<nElem; i++){
+        int temp;
+        cout<<"Reading element "<<i<<":";
+        cin>>temp;
+        a[i]=temp;
+    }
+}
+
+int main() {
+    static int nElem = 10;
+    int a[nElem];
+    readArray(a,nElem);
+    for(int i = 0; i< nElem; i++){
+        cout<<"Element "<<i<<": "<<a[i]<<endl;
+    }
+
+}

@@ -1,0 +1,27 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void bubbleSort(vector<int> &v){
+    int toCheck = v.size();
+    while(toCheck > 0) {
+        for (int i = 1; i < toCheck; i ++) {
+            if (v.at(i - 1) > v.at(i)) {
+                int temp = v.at(i);
+                v.at(i) = v.at(i - 1);
+                v.at(i - 1) = temp;
+            }
+        }
+        toCheck --;
+    }
+}
+
+int main() {
+    vector<int> v = {2, 3, 40, 6, 45, 70, 10};
+    bubbleSort(v);
+    for(int i = 0; i<v.size(); i++){
+        cout<<v.at(i)<<endl;
+    }
+
+}
