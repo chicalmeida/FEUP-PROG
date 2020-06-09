@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+char encryptChar(char c, int key){
+    if (isalpha(c)) { //checks if the c character is alphabetic
+        char result = (c + key);
+        if (isupper(c)) { //checks if the c character is upper case
+            while (result < 'A') result += 26;
+            while (result > 'Z') result -= 26;
+        } else {
+            while (result < 'a') result += 26;
+            while (result > 'z') result -= 26;
+        }
+        c = result;
+    }
+    return c;
+}
+
+string encryptString(string s, int key){
+    string a;
+    for(int i =0; i<s.size(); i++){
+        a+= encryptChar(s[i], -10);
+    }
+    return a;
+}
+
+int main() {
+    string s;
+    cout<<"Enter a phrase: "<<endl;
+    getline(cin, s);
+    cout<<encryptString(s,-10);
+
+
+}

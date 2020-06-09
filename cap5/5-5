@@ -1,0 +1,54 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <cstring>
+#include <algorithm>
+
+using namespace std;
+
+string convertUpper(string &name){
+    string temp;
+    for(int i =0; i<name.size(); i++){
+        temp+=toupper(name[i]);
+    }
+    return temp;
+}
+
+void removeExtraSpaces(string &name) {
+    name.erase(unique(name.begin(), name.end(), [](char a, char b) {return isspace(a) && isspace(b);}),
+               name.end());
+}
+
+void trimStr(string &name){
+    int start = name.find_first_not_of(' ');
+    name = name.substr(start);
+    int end = name.find_last_not_of(' ');
+    name=name.substr(0, end+1);
+}
+
+void removeParticles(string &name, vector<string> &particles){
+    for(const string par : particles){
+        size_t pos = name.find(par);
+        while(pos!=string::npos){
+            name.replace(pos, par.size(), " ");
+            pos = name.find(par, pos);
+        }
+    }
+}
+
+string normalizeName(const string &name){
+    string result = name;
+    vector<string> particles = {" DE ", " DO ", " DA ", " DOS ", " DAS ", " E "};
+    result = convertUpper(result);
+    removeParticles(result, particles);
+    removeExtraSpaces(result);
+    trimStr(result);
+    return result;
+
+
+}
+
+int main() {
+    string name = "Maria Francisca Ferrao Castelo Branco De Faria e Almeida";
+    cout<<normalizeName(name);
+}

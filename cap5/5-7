@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <cstring>
+#include <algorithm>
+#include <iomanip>
+
+
+using namespace std;
+
+typedef struct{
+    unsigned int year, month, day;
+}Date;
+
+void readDate(Date &d){
+    string date;
+    cout<<"Enter date year/month/year"<<endl;
+    cin>>date;
+    int f = date.find_first_of('/');
+    int e = date.find_last_of('/');
+    d.year=stoi(date.substr(0, 4));
+    d.month=stoi(date.substr(f+1, 2));
+    d.day=stoi(date.substr(e+1, 2));
+}
+
+void writeDate(const Date &d){
+    cout << setfill('0');
+    cout << setw(4) << d.year << "/" << setw(2) << d.month << "/" << setw(2) << d.day;
+}
+
+int compareDates(const Date &d1, const Date &d2){
+    if(d1.year!=d2.year){
+        return d1.year>d2.year ? 1 : -1;
+    }
+    if(d1.month!=d2.month){
+        return d1.month>d2.month ? 1 : -1;
+    }
+    if(d1.day!=d2.day){
+        return d1.day>d2.day ? 1: -1;
+    }
+    return 0;
+}
+
+void sortDates(Date d1, Date d2) {
+    if (compareDates(d1, d2) > 0) {
+        Date temp = d1;
+        d1 = d2;
+        d2 = temp;
+    }
+}
+
+int main() {
+    Date d1;
+    readDate(d1);
+    Date d2;
+    readDate(d2);
+    sortDates(d1, d2);
+    writeDate(d1);
+    cout << '\n';
+    writeDate(d2);
+}

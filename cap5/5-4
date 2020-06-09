@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <cstring>
+
+using namespace std;
+
+//a)
+bool sequenceSearch(const string &s, int nc, char c){
+    string cr(nc, c); //creates a string of nc c chars
+
+    int temp;
+    for(int i = 0; i<s.size(); i++){
+        if(s[i]==c){
+            temp++;
+            string car(temp, c);
+            if(cr==car){
+                return true;
+            }
+        }
+        else{
+            temp =0;
+        }
+    }
+    return false;
+}
+//b)
+bool sequenceSearch(const string &s, int nc, char c){
+    string temp(nc, c);
+    return s.find(temp)!=-1; //if it doesn't find temp in s, will return false
+}
+
+int main() {
+    cout<<sequenceSearch("abcddeedddf", 3, 'd')<<endl;
+    cout<<sequenceSearch("abcddeedddf", 4, 'd');
+}
